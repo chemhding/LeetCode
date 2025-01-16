@@ -60,22 +60,19 @@ class Solution(object):
         # Thus, we need l+(r-l)//2 instead of (l+r)/2
         # and x/mid instead of mid * mid
 
-        l = 0
-        r = x
-        mid = 0
+        left = 0
+        right = x
 
-        while l < r:
-            mid = l + (r-l)//2
-            if l == mid:
-                return mid
-            if x/mid < mid:
-                r = mid
-            elif x/mid == mid:
-                return mid
+        while left <= right:
+            mid = left + (right - left) // 2
+            if mid * mid < x:
+                left = mid + 1
+            elif mid * mid > x:
+                right = mid - 1
             else:
-                l = mid
-        
-        return mid
+                return mid
+            
+        return min(left, right)
 
         
 # @lc code=end
